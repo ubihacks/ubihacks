@@ -10,5 +10,6 @@ I'm Ubaid Iftikhar a Full Stack Software Engineer.
 
 ### TECHNOGIES
 
-[(https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)]
 
+
+[!(https://www.flaticon.com/svg/vstatic/svg/919/919853.svg?token=exp=1620541002~hmac=273c493dfce48b06b28704d789adb8e8)]
