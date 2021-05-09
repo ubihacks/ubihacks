@@ -11,4 +11,3 @@ I'm Ubaid Iftikhar a Full Stack Software Engineer.
 ### TECHNOGIES
 
 
-![image](https://www.flaticon.com/svg/vstatic/svg/919/919853.svg)****
