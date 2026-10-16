@@ -22,7 +22,7 @@ Beyond Azure cloud infrastructure, CI/CD pipelines, IaC and modern web tech, I'v
 <br />
 <br />
 
-**Right now:** I'm leading AI adoption on a large, established codebase that wasn't using AI. The goal is to bring it in securely and in a structured way: across planning, coding, review, testing and release, with humans in the loop and clear guardrails. It speeds up our development process and helps us deliver faster. More importantly, it helps us build a product that is more user-friendly, more reliable and more useful to the people who rely on it.
+**Leading AI adoption** on a large, established codebase that wasn't using AI. The goal is to bring it in securely and in a structured way: across planning, coding, review, testing and release, with humans in the loop and clear guardrails. It speeds up our development process and helps us deliver faster. More importantly, it helps us build a product that is more user-friendly, more reliable and more useful to the people who rely on it.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/adoption-dark.svg" />

@@ -5,7 +5,7 @@
 // scripts at render time:
 //   - glass terminal window over a drifting, blurred gradient backdrop
 //   - a typed tagline that cycles through PHRASES (SMIL, discrete steps)
-//   - a spinning ASCII torus, rendered frame by frame (CSS, stepped opacity)
+//   - an ASCII delivery loop, its comet rendered frame by frame (CSS, stepped opacity)
 
 import { mkdir, writeFile } from 'node:fs/promises';
 import { PALETTES, esc, style, defs, backdrop, outline, panel } from './lib/glass.mjs';
@@ -44,56 +44,92 @@ const LINKS = [
 const reducedMotion =(rules) => `
     @media (prefers-reduced-motion: reduce) { * { animation: none !important; } ${rules} }`;
 
-// ---------- ASCII torus ----------
+// ---------- delivery loop ----------
 
-const SHADES = '.,-~:;=!*#$@';
+// How a product gets better: an ASCII comet circles the loop, lighting each
+// stage as it arrives while the centre explains what happens there.
+// [stage, what we do, why]
+const LOOP = [
+  ['discover', 'talk to users', 'find the friction'],
+  ['design', 'shape the fix', 'keep it simple'],
+  ['build', 'small, safe PRs', 'tests + AI review'],
+  ['ship', 'ship with CI/CD', 'zero downtime'],
+  ['learn', 'measure impact', 'feed the next loop'],
+];
 
-// Classic donut.c, adapted to a cols x rows grid whose cells are cellW x cellH px.
-function torusFrame(A, B, cols, rows, cellW, cellH) {
-  const out = new Array(cols * rows).fill(' ');
-  const zbuf = new Array(cols * rows).fill(0);
-  const kx = cols * 0.5;
-  const ky = kx * (cellW / cellH);
-  const [cA, sA, cB, sB] = [Math.cos(A), Math.sin(A), Math.cos(B), Math.sin(B)];
-  for (let j = 0; j < 2 * Math.PI; j += 0.06) {
-    const [ct, st] = [Math.cos(j), Math.sin(j)];
-    for (let i = 0; i < 2 * Math.PI; i += 0.015) {
-      const [sp, cp] = [Math.sin(i), Math.cos(i)];
-      const h = ct + 2;
-      const D = 1 / (sp * h * sA + st * cA + 5);
-      const t = sp * h * cA - st * sA;
-      const x = Math.floor(cols / 2 + kx * D * (cp * h * cB - t * sB));
-      const y = Math.floor(rows / 2 + ky * D * (cp * h * sB + t * cB));
-      const N = Math.floor(8 * ((st * sA - sp * ct * cA) * cB - sp * ct * sA - st * cA - cp * ct * sB));
-      const o = x + cols * y;
-      if (y >= 0 && y < rows && x >= 0 && x < cols && D > zbuf[o]) {
-        zbuf[o] = D;
-        out[o] = SHADES[Math.max(0, N)];
-      }
-    }
-  }
-  return Array.from({ length: rows }, (_, r) => out.slice(r * cols, (r + 1) * cols).join(''));
-}
+// Comet head first, fading to the ring's own dot.
+const TRAIL = ['@', '#', '*', '+', ':', '·'];
 
-function torus(p, { cx, top, cols, rows, fontSize, lineHeight, frames, frameMs }) {
-  const cellW = fontSize * 0.6;
-  const period = (frames * frameMs) / 1000;
-  const groups = [];
-  for (let f = 0; f < frames; f++) {
-    // One full turn on A and two on B, so the last frame flows into the first.
-    const lines = torusFrame(1 + (2 * Math.PI * f) / frames, (4 * Math.PI * f) / frames, cols, rows, cellW, lineHeight);
-    const tspans = lines.map((l, r) => `<tspan x="${cx}" y="${(top + r * lineHeight).toFixed(1)}">${esc(l)}</tspan>`).join('');
+function deliveryLoop(p, { cx, cy, rx, ry, perStage = 14, frameMs = 100 }) {
+  const n = LOOP.length;
+  const points = n * perStage;
+  const period = (points * frameMs) / 1000;
+  const fs = 13;
+  // Clockwise from 12 o'clock; nudge glyphs down so they centre on the ring.
+  const pt = (k) => {
+    const a = -Math.PI / 2 + (2 * Math.PI * k) / points;
+    return [cx + rx * Math.cos(a), cy + ry * Math.sin(a)];
+  };
+  const xy = ([x, y]) => `x="${x.toFixed(1)}" y="${(y + fs * 0.34).toFixed(1)}"`;
+
+  // Static ring, with a gap around each stage node.
+  const ring = Array.from({ length: points }, (_, k) => k)
+    .filter((k) => Math.min(k % perStage, perStage - (k % perStage)) > 1)
+    .map((k) => `<tspan ${xy(pt(k))}>·</tspan>`).join('');
+
+  // One frame per ring point; each shows the comet with its trail behind it.
+  const frames = Array.from({ length: points }, (_, f) => {
+    const tspans = TRAIL.map((ch, t) => `<tspan ${xy(pt((f - t + points) % points))} fill-opacity="${(1 - t / TRAIL.length).toFixed(2)}">${esc(ch)}</tspan>`).join('');
     const delay = ((f * frameMs) / 1000 - period).toFixed(3);
-    groups.push(`<text class="f${f === 0 ? ' f0' : ''}" style="animation-delay:${delay}s">${tspans}</text>`);
-  }
+    return `<text class="f${f === 0 ? ' f0' : ''}" style="animation-delay:${delay}s">${tspans}</text>`;
+  });
+
+  // Stages light up as the comet reaches them and stay lit until the loop restarts.
+  const at = (i) => (100 * i) / n;
+  const stageCss = LOOP.map((_, i) => `
+    .s${i} { animation: s${i} ${period}s linear infinite; }
+    @keyframes s${i} { ${i === 0 ? '0%, 96% { opacity: 1; }' : `0%, ${(at(i) - 0.01).toFixed(2)}% { opacity: 0; } ${at(i)}%, 96% { opacity: 1; }`} 99%, 100% { opacity: 0; } }`).join('');
+  const stages = LOOP.map(([name], i) => {
+    const [x, y] = pt(i * perStage);
+    const dx = x - cx;
+    const side = Math.abs(dx) > rx * 0.7;
+    // Top/bottom labels sit above/below the node, side labels beside it.
+    const [lx, ly, anchor] = side
+      ? [x + Math.sign(dx) * 10, y + 3.5, dx > 0 ? 'start' : 'end']
+      : [x, y < cy ? y - 10 : y + 17, 'middle'];
+    const label = (cls, fill) => `<text class="mono${cls}" x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" font-size="9.5" letter-spacing="0.5" fill="${fill}" text-anchor="${anchor}">${esc(name)}</text>`;
+    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" fill="none" stroke="${p.muted}" stroke-opacity="0.6"/>
+    <circle class="s${i}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" fill="${p.accent}"/>
+    ${label('', p.muted)}
+    ${label(` s${i}`, p.accent)}`;
+  }).join('\n    ');
+
+  // Centre: what happens at the current stage, swapped as each one lights.
+  const actCss = LOOP.map((_, i) => {
+    const [s, e] = [at(i), at(i + 1)];
+    return `
+    .a${i} { opacity: 0; animation: a${i} ${period}s ease-out infinite; }
+    @keyframes a${i} { 0%, ${s}% { opacity: 0; transform: translateY(3px); } ${s + 3}%, ${e - 2}% { opacity: 1; transform: none; } ${e}%, 100% { opacity: 0; } }`;
+  }).join('');
+  const acts = LOOP.map(([, what, why], i) => `<g class="a${i}">
+      <text x="${cx}" y="${cy - 12}" class="mono" font-size="8.5" letter-spacing="1.5" fill="${p.accent}" text-anchor="middle">${String(i + 1).padStart(2, '0')} / ${String(n).padStart(2, '0')}</text>
+      <text x="${cx}" y="${cy + 5}" class="sans" font-size="12.5" font-weight="600" fill="${p.text}" text-anchor="middle">${esc(what)}</text>
+      <text x="${cx}" y="${cy + 19}" class="mono" font-size="8.5" fill="${p.muted}" text-anchor="middle">${esc(why)}</text>
+    </g>`).join('\n    ');
+
   const css = `
-    .ascii { font-size: ${fontSize}px; white-space: pre; }
+    .ring { font-size: ${fs}px; }
     .f { opacity: 0; animation: frame ${period}s steps(1, end) infinite; }
-    @keyframes frame { 0% { opacity: 1; } ${(100 / frames).toFixed(3)}% { opacity: 0; } 100% { opacity: 0; } }`;
-  const svg = `<g class="mono ascii" fill="url(#asciiInk)" text-anchor="middle" xml:space="preserve">
-      ${groups.join('\n      ')}
-    </g>`;
-  return { css, svg };
+    @keyframes frame { 0% { opacity: 1; } ${(100 / points).toFixed(3)}% { opacity: 0; } 100% { opacity: 0; } }${stageCss}${actCss}`;
+  const svg = `<g class="mono ring" text-anchor="middle">
+      <text fill="${p.muted}" fill-opacity="0.6">${ring}</text>
+      <g fill="url(#asciiInk)">
+      ${frames.join('\n      ')}
+      </g>
+    </g>
+    ${stages}
+    ${acts}`;
+  return { css, svg, aria: `Product delivery loop, repeated: ${LOOP.map(([s, w, y]) => `${s}, ${w}, ${y}`).join('; ')}.` };
 }
 
 // ---------- typing ----------
@@ -140,7 +176,7 @@ function typing(p, { x, y, fontSize, typeMs = 55, holdMs = 1900, deleteMs = 24, 
 function header(p) {
   const W = 900;
   const H = 356;
-  const ascii = torus(p, { cx: 736, top: 116, cols: 40, rows: 20, fontSize: 9.5, lineHeight: 9.2, frames: 48, frameMs: 85 });
+  const loop = deliveryLoop(p, { cx: 736, cy: 190, rx: 66, ry: 58 });
   const typed = typing(p, { x: 66, y: 214, fontSize: 16 });
 
   const dot = { lit: [p.accent, 1], arch: [p.accent2, 0.85] };
@@ -159,8 +195,8 @@ function header(p) {
   }).join('\n    ');
   const chipAria = CHIPS.flat().map(([l]) => l).join(', ');
 
-  const css = `${ascii.css}${typed.css}${reducedMotion('.f0 { opacity: 1; }')}`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Ubaid Iftikhar, Senior Software Engineer and Cloud Engineer. ${esc(PHRASES.join('. '))}. ${esc(chipAria)}.">
+  const css = `${loop.css}${typed.css}${reducedMotion('.f0, .a0 { opacity: 1; }')}`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Ubaid Iftikhar, Senior Software Engineer and Cloud Engineer. ${esc(PHRASES.join('. '))}. ${esc(chipAria)}. ${esc(loop.aria)}">
   ${style(css)}
   <defs>
     ${defs(p, W, H)}
@@ -188,10 +224,11 @@ function header(p) {
     ${typed.svg}
     ${chipSvg}
 
-  <!-- ascii -->
+  <!-- delivery loop -->
   ${panel(p, 608, 86, 256, 230, 12)}
-  <text x="622" y="304" class="mono" font-size="9" letter-spacing="1" fill="${p.muted}" fill-opacity="0.8">~/torus.c</text>
-  ${ascii.svg}
+  <text x="622" y="304" class="mono" font-size="9" letter-spacing="1" fill="${p.muted}" fill-opacity="0.8">~/ship.loop</text>
+  <text x="850" y="304" class="mono" font-size="9" letter-spacing="1" fill="${p.accent}" fill-opacity="0.8" text-anchor="end">↻ repeat</text>
+  ${loop.svg}
 
   ${outline(p, W, H)}
 </svg>
@@ -237,7 +274,7 @@ function pillars(p) {
 
 // ---------- adoption ----------
 
-// "Right now" card: AI being brought into a large, established codebase. A spark
+// AI adoption card: AI being brought into a large, established codebase. A spark
 // travels the delivery lifecycle, lighting each stage, and the outcomes fill in.
 // One shared PERIOD keeps the pipeline and outcomes on the same beat.
 const ADOPTION_STAGES = [['Plan', 'spec drafts'], ['Code', 'pair coding'], ['Review', 'PR checks'], ['Test', 'test generation'], ['Release', 'release notes']];
@@ -340,7 +377,7 @@ function adoption(p) {
     .glow { ${box} animation: glow 2.4s ease-in-out infinite; }
     @keyframes glow { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.5); opacity: 1; } }${reducedMotion('.tw, .spark { display: none; }')}`;
 
-  const aria = `Right now: bringing AI into a large, established codebase that was not using it, securely and in a structured way. AI across the delivery lifecycle: ${ADOPTION_STAGES.map(([n, h]) => `${n} (${h})`).join(', ')}. Outcomes: ${ADOPTION_OUTCOMES.join(', ')}. ${ADOPTION_CHIPS.join('. ')}.`;
+  const aria = `Bringing AI into a large, established codebase that was not using it, securely and in a structured way. AI across the delivery lifecycle: ${ADOPTION_STAGES.map(([n, h]) => `${n} (${h})`).join(', ')}. Outcomes: ${ADOPTION_OUTCOMES.join(', ')}. ${ADOPTION_CHIPS.join('. ')}.`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(aria)}">
   ${style(css)}
   <defs>
@@ -353,7 +390,7 @@ function adoption(p) {
 
   ${backdrop(p, W, H, [{ cx: 140, cy: 260, r: 140 }, { cx: 560, cy: 40, r: 150 }, { cx: 820, cy: 240, r: 130 }])}
 
-  <text x="34" y="44" class="mono" font-size="11" letter-spacing="2" fill="${p.accent}">RIGHT NOW  /  AI ADOPTION</text>
+  <text x="34" y="44" class="mono" font-size="11" letter-spacing="2" fill="${p.accent}">AI ADOPTION</text>
   <text x="32" y="76" class="sans" font-size="22" font-weight="650" letter-spacing="-0.4" fill="${p.text}">Bringing AI into a large codebase, securely and by design</text>
 
   ${panels}
