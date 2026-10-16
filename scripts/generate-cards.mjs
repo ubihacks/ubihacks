@@ -7,7 +7,7 @@
 //   OUT_DIR           output directory (default: dist)
 
 import { mkdir, writeFile } from 'node:fs/promises';
-import { PALETTES, esc, style, defs, backdrop, outline, panel } from './lib/glass.mjs';
+import { PALETTES, WEIGHT, esc, style, defs, backdrop, outline, panel } from './lib/glass.mjs';
 
 const LOGIN = process.env.GH_LOGIN || 'ubihacks';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -19,12 +19,12 @@ const HEIGHT = 300;
 
 const THEMES = {
   dark: {
-    ...PALETTES.dark, track: '#1a212c',
-    levels: ['#1a212c', '#0c2d4a', '#11568f', '#2a86d6', '#6cc0ff'],
+    ...PALETTES.dark, track: '#151b23',
+    levels: ['#151b23', '#033a16', '#196c2e', '#2ea043', '#56d364'],
   },
   light: {
-    ...PALETTES.light, track: '#e2e8f0',
-    levels: ['#e2e8f0', '#c6e2ff', '#79b8ff', '#2f81f7', '#0a4fa3'],
+    ...PALETTES.light, track: '#eff2f5',
+    levels: ['#eff2f5', '#aceebb', '#4ac26b', '#2da44e', '#116329'],
   },
 };
 
@@ -75,16 +75,16 @@ function frame(t, label, aria, body) {
     ${defs(t, WIDTH, HEIGHT)}
   </defs>
   ${backdrop(t, WIDTH, HEIGHT, [{ cx: 120, cy: 40, r: 150 }, { cx: 820, cy: 280, r: 160 }, { cx: 520, cy: 300, r: 110 }])}
-  ${panel(t, 12, 12, WIDTH - 24, HEIGHT - 24, 14)}
+  ${panel(t, 12, 12, WIDTH - 24, HEIGHT - 24, 16)}
   ${outline(t, WIDTH, HEIGHT)}
-  <text x="28" y="42" class="mono" font-size="11" letter-spacing="1.5" fill="${t.accent}">${esc(label)}</text>
+  <text x="28" y="42" class="mono" font-size="11" letter-spacing="1.2" fill="${t.accent}">${esc(label)}</text>
   ${body}
 </svg>
 `;
 }
 
 function stat(t, x, value, caption) {
-  return `<text x="${x}" y="84" class="sans" font-size="24" font-weight="600" letter-spacing="-0.5" fill="${t.text}">${esc(value)}</text>
+  return `<text x="${x}" y="84" class="sans" font-size="28" font-weight="${WEIGHT.heading}" letter-spacing="-0.8" fill="${t.text}">${esc(value)}</text>
   <text x="${x}" y="104" class="sans" font-size="12" fill="${t.muted}">${esc(caption)}</text>`;
 }
 
