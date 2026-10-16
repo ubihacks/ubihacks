@@ -5,10 +5,10 @@
 
 export const PALETTES = {
   dark: {
-    base: '#05070d', text: '#f0f6fc', muted: '#8b949e', accent: '#58b4ff', accent2: '#b39dfa',
-    blobs: ['#2f81f7', '#8b5cf6', '#0ea5b7'], blobOpacity: 0.45, grain: 0.07,
-    glass: '#ffffff', glassOpacity: 0.045, edge: '#ffffff', edgeHi: 0.26, edgeLo: 0.04, sheen: 0.07,
-    line: '#ffffff', lineOpacity: 0.08, outline: '#ffffff', outlineOpacity: 0.07,
+    base: '#010205', text: '#f0f6fc', muted: '#7d8590', accent: '#58b4ff', accent2: '#b39dfa',
+    blobs: ['#2f81f7', '#8b5cf6', '#0ea5b7'], blobOpacity: 0.3, grain: 0.06,
+    glass: '#ffffff', glassOpacity: 0.035, edge: '#ffffff', edgeHi: 0.2, edgeLo: 0.04, sheen: 0.05,
+    line: '#ffffff', lineOpacity: 0.08, outline: '#ffffff', outlineOpacity: 0.1,
   },
   light: {
     base: '#eef2f8', text: '#0f172a', muted: '#526071', accent: '#2563eb', accent2: '#7c3aed',

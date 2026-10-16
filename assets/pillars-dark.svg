@@ -15,73 +15,73 @@
     <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
     <clipPath id="card"><rect width="900" height="196" rx="18"/></clipPath>
     <linearGradient id="edge" x1="0" y1="0" x2="0.4" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.26"/>
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.2"/>
       <stop offset="1" stop-color="#ffffff" stop-opacity="0.04"/>
     </linearGradient>
     <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.05"/>
       <stop offset="0.45" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
   </defs>
 
   <g clip-path="url(#card)">
-    <rect width="900" height="196" fill="#05070d"/>
-    <g filter="url(#soften)" opacity="0.45">
+    <rect width="900" height="196" fill="#010205"/>
+    <g filter="url(#soften)" opacity="0.3">
       <circle class="blob blob0" cx="120" cy="180" r="130" fill="#2f81f7"/>
       <circle class="blob blob1" cx="520" cy="10" r="140" fill="#8b5cf6"/>
       <circle class="blob blob2" cx="840" cy="160" r="120" fill="#0ea5b7"/>
     </g>
-    <rect width="900" height="196" filter="url(#grain)" opacity="0.07"/>
+    <rect width="900" height="196" filter="url(#grain)" opacity="0.06"/>
   </g>
 
   <g class="rise" style="animation-delay:0.00s">
     <g>
-    <rect x="16" y="16" width="208" height="164" rx="14" fill="#ffffff" fill-opacity="0.045"/>
+    <rect x="16" y="16" width="208" height="164" rx="14" fill="#ffffff" fill-opacity="0.035"/>
     <rect x="16" y="16" width="208" height="164" rx="14" fill="url(#sheen)"/>
     <rect x="16.5" y="16.5" width="207" height="163" rx="13.5" fill="none" stroke="url(#edge)"/>
   </g>
     <text x="36" y="52" class="mono" font-size="11" letter-spacing="1.5" fill="#58b4ff">01 · BUILD</text>
     <rect x="36" y="64" width="22" height="2" rx="1" fill="#b39dfa" fill-opacity="0.8"/>
     <text x="36" y="98" class="sans" font-size="17" font-weight="600" fill="#f0f6fc">Full-stack systems</text>
-    <text x="36" y="128" class="sans" font-size="12.5" fill="#8b949e">Clean architecture, built</text>
-    <text x="36" y="148" class="sans" font-size="12.5" fill="#8b949e">to scale and stay simple.</text>
+    <text x="36" y="128" class="sans" font-size="12.5" fill="#7d8590">Clean architecture, built</text>
+    <text x="36" y="148" class="sans" font-size="12.5" fill="#7d8590">to scale and stay simple.</text>
   </g>
   <g class="rise" style="animation-delay:0.12s">
     <g>
-    <rect x="236" y="16" width="208" height="164" rx="14" fill="#ffffff" fill-opacity="0.045"/>
+    <rect x="236" y="16" width="208" height="164" rx="14" fill="#ffffff" fill-opacity="0.035"/>
     <rect x="236" y="16" width="208" height="164" rx="14" fill="url(#sheen)"/>
     <rect x="236.5" y="16.5" width="207" height="163" rx="13.5" fill="none" stroke="url(#edge)"/>
   </g>
     <text x="256" y="52" class="mono" font-size="11" letter-spacing="1.5" fill="#58b4ff">02 · CLOUD</text>
     <rect x="256" y="64" width="22" height="2" rx="1" fill="#b39dfa" fill-opacity="0.8"/>
     <text x="256" y="98" class="sans" font-size="17" font-weight="600" fill="#f0f6fc">Cloud platforms</text>
-    <text x="256" y="128" class="sans" font-size="12.5" fill="#8b949e">Azure infrastructure, IaC</text>
-    <text x="256" y="148" class="sans" font-size="12.5" fill="#8b949e">and secure deployments.</text>
+    <text x="256" y="128" class="sans" font-size="12.5" fill="#7d8590">Azure infrastructure, IaC</text>
+    <text x="256" y="148" class="sans" font-size="12.5" fill="#7d8590">and secure deployments.</text>
   </g>
   <g class="rise" style="animation-delay:0.24s">
     <g>
-    <rect x="456" y="16" width="208" height="164" rx="14" fill="#ffffff" fill-opacity="0.045"/>
+    <rect x="456" y="16" width="208" height="164" rx="14" fill="#ffffff" fill-opacity="0.035"/>
     <rect x="456" y="16" width="208" height="164" rx="14" fill="url(#sheen)"/>
     <rect x="456.5" y="16.5" width="207" height="163" rx="13.5" fill="none" stroke="url(#edge)"/>
   </g>
     <text x="476" y="52" class="mono" font-size="11" letter-spacing="1.5" fill="#58b4ff">03 · AUTOMATION</text>
     <rect x="476" y="64" width="22" height="2" rx="1" fill="#b39dfa" fill-opacity="0.8"/>
     <text x="476" y="98" class="sans" font-size="17" font-weight="600" fill="#f0f6fc">Ship faster</text>
-    <text x="476" y="128" class="sans" font-size="12.5" fill="#8b949e">CI/CD pipelines that cut</text>
-    <text x="476" y="148" class="sans" font-size="12.5" fill="#8b949e">friction and reduce risk.</text>
+    <text x="476" y="128" class="sans" font-size="12.5" fill="#7d8590">CI/CD pipelines that cut</text>
+    <text x="476" y="148" class="sans" font-size="12.5" fill="#7d8590">friction and reduce risk.</text>
   </g>
   <g class="rise" style="animation-delay:0.36s">
     <g>
-    <rect x="676" y="16" width="208" height="164" rx="14" fill="#ffffff" fill-opacity="0.045"/>
+    <rect x="676" y="16" width="208" height="164" rx="14" fill="#ffffff" fill-opacity="0.035"/>
     <rect x="676" y="16" width="208" height="164" rx="14" fill="url(#sheen)"/>
     <rect x="676.5" y="16.5" width="207" height="163" rx="13.5" fill="none" stroke="url(#edge)"/>
   </g>
     <text x="696" y="52" class="mono" font-size="11" letter-spacing="1.5" fill="#58b4ff">04 · AI</text>
     <rect x="696" y="64" width="22" height="2" rx="1" fill="#b39dfa" fill-opacity="0.8"/>
     <text x="696" y="98" class="sans" font-size="17" font-weight="600" fill="#f0f6fc">Agentic AI</text>
-    <text x="696" y="128" class="sans" font-size="12.5" fill="#8b949e">Agent workflows and local</text>
-    <text x="696" y="148" class="sans" font-size="12.5" fill="#8b949e">LLMs that reason securely.</text>
+    <text x="696" y="128" class="sans" font-size="12.5" fill="#7d8590">Agent workflows and local</text>
+    <text x="696" y="148" class="sans" font-size="12.5" fill="#7d8590">LLMs that reason securely.</text>
   </g>
 
-  <rect x="0.5" y="0.5" width="899" height="195" rx="18" fill="none" stroke="#ffffff" stroke-opacity="0.07"/>
+  <rect x="0.5" y="0.5" width="899" height="195" rx="18" fill="none" stroke="#ffffff" stroke-opacity="0.1"/>
 </svg>

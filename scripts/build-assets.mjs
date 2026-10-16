@@ -456,19 +456,11 @@ function linkButton(p, { key, label, handle }, i, n) {
 `;
 }
 
-// The adoption card is the feature piece, so it stays dark in both themes, on a
-// deeper base with dimmer blobs than the regular dark palette.
-const MIDNIGHT = {
-  ...PALETTES.dark,
-  base: '#010205', muted: '#7d8590', blobOpacity: 0.3, grain: 0.06,
-  glassOpacity: 0.035, edgeHi: 0.2, sheen: 0.05, outlineOpacity: 0.1,
-};
-
 await mkdir(OUT_DIR, { recursive: true });
-await writeFile(new URL('adoption.svg', OUT_DIR), adoption(MIDNIGHT));
 for (const [name, p] of Object.entries(PALETTES)) {
   await writeFile(new URL(`header-${name}.svg`, OUT_DIR), header(p));
   await writeFile(new URL(`pillars-${name}.svg`, OUT_DIR), pillars(p));
+  await writeFile(new URL(`adoption-${name}.svg`, OUT_DIR), adoption(p));
   for (const [i, link] of LINKS.entries()) {
     await writeFile(new URL(`link-${link.key}-${name}.svg`, OUT_DIR), linkButton(p, link, i, LINKS.length));
   }

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(node --version)",
+      "PowerShell(gh --version)",
+      "PowerShell(gh auth status 2>&1)",
+      "Bash(node scripts/build-assets.mjs)"
+    ]
+  }
+}

@@ -1,0 +1,268 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300" role="img" aria-label="Right now: bringing AI into a large, established codebase that was not using it, securely and in a structured way. AI across the delivery lifecycle: Plan (spec drafts), Code (pair coding), Review (PR checks), Test (test generation), Release (release notes). Outcomes: Ship faster, Safer changes, Better for users. Secure by design. Structured rollout. Human in the loop. Built for end users.">
+  <style>
+    .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+    .blob { animation: drift 19s ease-in-out infinite alternate; }
+    .blob1 { animation-duration: 23s; animation-direction: alternate-reverse; }
+    .blob2 { animation-duration: 29s; }
+    @keyframes drift { from { transform: translate(0, 0); } to { transform: translate(70px, 26px); } }
+    .tw { animation: tw 3s ease-in-out infinite backwards; }
+    @keyframes tw { 0%, 100% { opacity: 0; } 50% { opacity: 0.9; } }
+    .flow { animation: flow 0.9s linear infinite; }
+    @keyframes flow { to { stroke-dashoffset: -16; } }
+    .spark { animation: spark 6s cubic-bezier(.45,0,.55,1) infinite; }
+    @keyframes spark { 0% { transform: translateX(0); opacity: 0; } 6% { transform: translateX(0); opacity: 1; } 80% { transform: translateX(312px); opacity: 1; } 90% { transform: translateX(312px); opacity: 0; } 100% { transform: translateX(0); opacity: 0; } }
+    .trail { transform-box: fill-box; transform-origin: left; animation: trail 6s cubic-bezier(.45,0,.55,1) infinite; }
+    @keyframes trail { 0%, 6% { transform: scaleX(0); } 80%, 92% { transform: scaleX(1); } 97%, 100% { transform: scaleX(0); } }
+    .n0 { animation: n0 6s linear infinite; }
+    @keyframes n0 { 0%, 5.9% { opacity: 0; } 6.0%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+    .n1 { animation: n1 6s linear infinite; }
+    @keyframes n1 { 0%, 24.4% { opacity: 0; } 24.5%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+    .n2 { animation: n2 6s linear infinite; }
+    @keyframes n2 { 0%, 42.9% { opacity: 0; } 43.0%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+    .n3 { animation: n3 6s linear infinite; }
+    @keyframes n3 { 0%, 61.4% { opacity: 0; } 61.5%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+    .n4 { animation: n4 6s linear infinite; }
+    @keyframes n4 { 0%, 79.9% { opacity: 0; } 80.0%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+    .o0 { transform-box: fill-box; transform-origin: left; animation: o0 6s ease-out infinite; }
+    @keyframes o0 { 0%, 78% { transform: scaleX(0); } 82%, 92% { transform: scaleX(1); } 97%, 100% { transform: scaleX(0); } }
+    .o1 { transform-box: fill-box; transform-origin: left; animation: o1 6s ease-out infinite; }
+    @keyframes o1 { 0%, 81% { transform: scaleX(0); } 85%, 92% { transform: scaleX(1); } 97%, 100% { transform: scaleX(0); } }
+    .o2 { transform-box: fill-box; transform-origin: left; animation: o2 6s ease-out infinite; }
+    @keyframes o2 { 0%, 84% { transform: scaleX(0); } 88%, 92% { transform: scaleX(1); } 97%, 100% { transform: scaleX(0); } }
+    .glow { transform-box: fill-box; transform-origin: center; animation: glow 2.4s ease-in-out infinite; }
+    @keyframes glow { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.5); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } .tw, .spark { display: none; } }
+  </style>
+  <defs>
+    <filter id="soften" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="56"/></filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <clipPath id="card"><rect width="900" height="300" rx="18"/></clipPath>
+    <linearGradient id="edge" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="aiInk" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <rect width="900" height="300" fill="#eef2f8"/>
+    <g filter="url(#soften)" opacity="0.75">
+      <circle class="blob blob0" cx="140" cy="260" r="140" fill="#60a5fa"/>
+      <circle class="blob blob1" cx="560" cy="40" r="150" fill="#c4b5fd"/>
+      <circle class="blob blob2" cx="820" cy="240" r="130" fill="#67e8f9"/>
+    </g>
+    <rect width="900" height="300" filter="url(#grain)" opacity="0.05"/>
+  </g>
+
+  <text x="34" y="44" class="mono" font-size="11" letter-spacing="2" fill="#2563eb">RIGHT NOW  /  AI ADOPTION</text>
+  <text x="32" y="76" class="sans" font-size="22" font-weight="650" letter-spacing="-0.4" fill="#0f172a">Bringing AI into a large codebase, securely and by design</text>
+
+  <g>
+    <rect x="32" y="100" width="180" height="140" rx="14" fill="#ffffff" fill-opacity="0.5"/>
+    <rect x="32" y="100" width="180" height="140" rx="14" fill="url(#sheen)"/>
+    <rect x="32.5" y="100.5" width="179" height="139" rx="13.5" fill="none" stroke="url(#edge)"/>
+  </g>
+  <g>
+    <rect x="272" y="100" width="392" height="140" rx="14" fill="#ffffff" fill-opacity="0.5"/>
+    <rect x="272" y="100" width="392" height="140" rx="14" fill="url(#sheen)"/>
+    <rect x="272.5" y="100.5" width="391" height="139" rx="13.5" fill="none" stroke="url(#edge)"/>
+  </g>
+  <g>
+    <rect x="676" y="100" width="190" height="140" rx="14" fill="#ffffff" fill-opacity="0.5"/>
+    <rect x="676" y="100" width="190" height="140" rx="14" fill="url(#sheen)"/>
+    <rect x="676.5" y="100.5" width="189" height="139" rx="13.5" fill="none" stroke="url(#edge)"/>
+  </g>
+  <rect x="50" y="118" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:0.00s" x="50" y="118" width="9" height="5" rx="1.5" fill="#7c3aed"/>
+  <rect x="62" y="118" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:0.23s" x="62" y="118" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="74" y="118" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="86" y="118" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="98" y="118" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="110" y="118" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="122" y="118" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:1.38s" x="122" y="118" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="134" y="118" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="146" y="118" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="158" y="118" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="170" y="118" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="182" y="118" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:2.53s" x="182" y="118" width="9" height="5" rx="1.5" fill="#7c3aed"/>
+  <rect x="50" y="127" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="62" y="127" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="74" y="127" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:0.83s" x="74" y="127" width="9" height="5" rx="1.5" fill="#7c3aed"/>
+  <rect x="86" y="127" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:1.06s" x="86" y="127" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="98" y="127" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="110" y="127" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="122" y="127" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="134" y="127" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="146" y="127" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:2.21s" x="146" y="127" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="158" y="127" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="170" y="127" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="182" y="127" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="50" y="136" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="62" y="136" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="74" y="136" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="86" y="136" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="98" y="136" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:1.66s" x="98" y="136" width="9" height="5" rx="1.5" fill="#7c3aed"/>
+  <rect x="110" y="136" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:1.89s" x="110" y="136" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="122" y="136" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="134" y="136" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="146" y="136" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="158" y="136" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="170" y="136" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:0.04s" x="170" y="136" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="182" y="136" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="50" y="145" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="62" y="145" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:1.34s" x="62" y="145" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="74" y="145" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="86" y="145" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="98" y="145" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="110" y="145" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="122" y="145" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:2.49s" x="122" y="145" width="9" height="5" rx="1.5" fill="#7c3aed"/>
+  <rect x="134" y="145" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:2.72s" x="134" y="145" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="146" y="145" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="158" y="145" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="170" y="145" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="182" y="145" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="50" y="154" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="62" y="154" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="74" y="154" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="86" y="154" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:2.17s" x="86" y="154" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="98" y="154" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="110" y="154" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="122" y="154" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="134" y="154" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="146" y="154" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:0.32s" x="146" y="154" width="9" height="5" rx="1.5" fill="#7c3aed"/>
+  <rect x="158" y="154" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:0.55s" x="158" y="154" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="170" y="154" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="182" y="154" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="50" y="163" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:1.85s" x="50" y="163" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="62" y="163" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="74" y="163" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="86" y="163" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="98" y="163" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="110" y="163" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:0.00s" x="110" y="163" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="122" y="163" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="134" y="163" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="146" y="163" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="158" y="163" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="170" y="163" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:1.15s" x="170" y="163" width="9" height="5" rx="1.5" fill="#7c3aed"/>
+  <rect x="182" y="163" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:1.38s" x="182" y="163" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="50" y="172" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="62" y="172" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:2.45s" x="62" y="172" width="9" height="5" rx="1.5" fill="#7c3aed"/>
+  <rect x="74" y="172" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:2.68s" x="74" y="172" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="86" y="172" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="98" y="172" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="110" y="172" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="122" y="172" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="134" y="172" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect class="tw" style="animation-delay:0.83s" x="134" y="172" width="9" height="5" rx="1.5" fill="#2563eb"/>
+  <rect x="146" y="172" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="158" y="172" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="170" y="172" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+  <rect x="182" y="172" width="9" height="5" rx="1.5" fill="#526071" fill-opacity="0.28"/>
+
+  <path class="flow" d="M220 140 H262" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="3 5" stroke-linecap="round"/>
+  <path d="M256 135 L262 140 L256 145" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="312" y="139" width="312" height="2" rx="1" fill="#526071" fill-opacity="0.3"/>
+    <rect class="trail" x="312" y="139" width="312" height="2" rx="1" fill="url(#aiInk)"/>
+    <circle cx="312" cy="140" r="7" fill="none" stroke="#526071" stroke-opacity="0.5"/>
+    <circle class="n0" cx="312" cy="140" r="7" fill="#2563eb"/>
+    <text x="312" y="164" class="sans" font-size="10.5" font-weight="600" fill="#0f172a" text-anchor="middle">Plan</text>
+    <text x="312" y="178" class="mono" font-size="8.5" fill="#526071" text-anchor="middle">spec drafts</text>
+    <circle cx="390" cy="140" r="7" fill="none" stroke="#526071" stroke-opacity="0.5"/>
+    <circle class="n1" cx="390" cy="140" r="7" fill="#2563eb"/>
+    <text x="390" y="164" class="sans" font-size="10.5" font-weight="600" fill="#0f172a" text-anchor="middle">Code</text>
+    <text x="390" y="178" class="mono" font-size="8.5" fill="#526071" text-anchor="middle">pair coding</text>
+    <circle cx="468" cy="140" r="7" fill="none" stroke="#526071" stroke-opacity="0.5"/>
+    <circle class="n2" cx="468" cy="140" r="7" fill="#2563eb"/>
+    <text x="468" y="164" class="sans" font-size="10.5" font-weight="600" fill="#0f172a" text-anchor="middle">Review</text>
+    <text x="468" y="178" class="mono" font-size="8.5" fill="#526071" text-anchor="middle">PR checks</text>
+    <circle cx="546" cy="140" r="7" fill="none" stroke="#526071" stroke-opacity="0.5"/>
+    <circle class="n3" cx="546" cy="140" r="7" fill="#2563eb"/>
+    <text x="546" y="164" class="sans" font-size="10.5" font-weight="600" fill="#0f172a" text-anchor="middle">Test</text>
+    <text x="546" y="178" class="mono" font-size="8.5" fill="#526071" text-anchor="middle">test generation</text>
+    <circle cx="624" cy="140" r="7" fill="none" stroke="#526071" stroke-opacity="0.5"/>
+    <circle class="n4" cx="624" cy="140" r="7" fill="#2563eb"/>
+    <text x="624" y="164" class="sans" font-size="10.5" font-weight="600" fill="#0f172a" text-anchor="middle">Release</text>
+    <text x="624" y="178" class="mono" font-size="8.5" fill="#526071" text-anchor="middle">release notes</text>
+    <g transform="translate(312 120)"><g class="spark">
+      <circle r="9" fill="#7c3aed" fill-opacity="0.25"/>
+      <path d="M0 -8 C1 -2 2 -1 8 0 C2 1 1 2 0 8 C-1 2 -2 1 -8 0 C-2 -1 -1 -2 0 -8Z" transform="scale(0.85)" fill="url(#aiInk)"/>
+    </g></g>
+    <circle cx="700" cy="126" r="3" fill="#2563eb"/>
+    <text x="710" y="130" class="sans" font-size="11" fill="#0f172a">Ship faster</text>
+    <rect x="804" y="124" width="44" height="4" rx="2" fill="#526071" fill-opacity="0.3"/>
+    <rect class="o0" x="804" y="124" width="44" height="4" rx="2" fill="url(#aiInk)"/>
+    <circle cx="700" cy="150" r="3" fill="#2563eb"/>
+    <text x="710" y="154" class="sans" font-size="11" fill="#0f172a">Safer changes</text>
+    <rect x="804" y="148" width="44" height="4" rx="2" fill="#526071" fill-opacity="0.3"/>
+    <rect class="o1" x="804" y="148" width="44" height="4" rx="2" fill="url(#aiInk)"/>
+    <circle cx="700" cy="174" r="3" fill="#7c3aed"/>
+    <text x="710" y="178" class="sans" font-size="11" fill="#0f172a">Better for users</text>
+    <rect x="804" y="172" width="44" height="4" rx="2" fill="#526071" fill-opacity="0.3"/>
+    <rect class="o2" x="804" y="172" width="44" height="4" rx="2" fill="url(#aiInk)"/>
+  <text x="52" y="214" class="sans" font-size="13" font-weight="600" fill="#0f172a">Large codebase</text>
+  <text x="52" y="229" class="mono" font-size="9.5" fill="#526071">established, pre-AI</text>
+  <text x="292" y="214" class="sans" font-size="13" font-weight="600" fill="#0f172a">AI across the delivery lifecycle</text>
+  <text x="292" y="229" class="mono" font-size="9.5" fill="#526071">structured, reviewed, secure</text>
+  <text x="696" y="214" class="sans" font-size="13" font-weight="600" fill="#0f172a">Outcomes</text>
+  <text x="696" y="229" class="mono" font-size="9.5" fill="#526071">team and end users</text>
+
+  <g>
+    <rect x="32" y="254" width="140" height="28" rx="14" fill="#ffffff" fill-opacity="0.5"/>
+    <rect x="32" y="254" width="140" height="28" rx="14" fill="url(#sheen)"/>
+    <rect x="32.5" y="254.5" width="139" height="27" rx="13.5" fill="none" stroke="url(#edge)"/>
+  </g>
+    <circle class="glow" style="animation-delay:0.0s" cx="46" cy="268" r="3" fill="#2563eb"/>
+    <text x="56" y="272" class="mono" font-size="11" fill="#0f172a" fill-opacity="0.82" textLength="105.6" lengthAdjust="spacing">Secure by design</text>
+  <g>
+    <rect x="182" y="254" width="153" height="28" rx="14" fill="#ffffff" fill-opacity="0.5"/>
+    <rect x="182" y="254" width="153" height="28" rx="14" fill="url(#sheen)"/>
+    <rect x="182.5" y="254.5" width="152" height="27" rx="13.5" fill="none" stroke="url(#edge)"/>
+  </g>
+    <circle class="glow" style="animation-delay:0.5s" cx="196" cy="268" r="3" fill="#7c3aed"/>
+    <text x="206" y="272" class="mono" font-size="11" fill="#0f172a" fill-opacity="0.82" textLength="118.8" lengthAdjust="spacing">Structured rollout</text>
+  <g>
+    <rect x="345" y="254" width="146" height="28" rx="14" fill="#ffffff" fill-opacity="0.5"/>
+    <rect x="345" y="254" width="146" height="28" rx="14" fill="url(#sheen)"/>
+    <rect x="345.5" y="254.5" width="145" height="27" rx="13.5" fill="none" stroke="url(#edge)"/>
+  </g>
+    <circle class="glow" style="animation-delay:1.0s" cx="359" cy="268" r="3" fill="#2563eb"/>
+    <text x="369" y="272" class="mono" font-size="11" fill="#0f172a" fill-opacity="0.82" textLength="112.2" lengthAdjust="spacing">Human in the loop</text>
+  <g>
+    <rect x="501" y="254" width="159" height="28" rx="14" fill="#ffffff" fill-opacity="0.5"/>
+    <rect x="501" y="254" width="159" height="28" rx="14" fill="url(#sheen)"/>
+    <rect x="501.5" y="254.5" width="158" height="27" rx="13.5" fill="none" stroke="url(#edge)"/>
+  </g>
+    <circle class="glow" style="animation-delay:1.5s" cx="515" cy="268" r="3" fill="#7c3aed"/>
+    <text x="525" y="272" class="mono" font-size="11" fill="#0f172a" fill-opacity="0.82" textLength="125.4" lengthAdjust="spacing">Built for end users</text>
+
+  <rect x="0.5" y="0.5" width="899" height="299" rx="18" fill="none" stroke="#0f172a" stroke-opacity="0.09"/>
+</svg>
