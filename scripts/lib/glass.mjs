@@ -7,7 +7,9 @@
 // github.com): Mona Sans and Mona Sans Mono, light heading weights with tight
 // tracking, a monochrome base with a single green accent, and a blue-violet
 // glow. The fonts are OFL subsets in ../fonts/, embedded as data URIs because
-// an <img> SVG cannot load fonts from anywhere else.
+// an <img> SVG cannot load fonts from anywhere else. They were cut from
+// github/mona-sans (MonaSansVF[opsz,wght], MonaSansMonoVF[wght]) with fontTools:
+// printable ASCII plus · – — ’ • → ↻ ✓, weights trimmed to 400-700 / 400-600.
 
 import { readFileSync } from 'node:fs';
 
