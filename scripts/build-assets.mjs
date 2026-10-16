@@ -8,7 +8,7 @@
 //   - an ASCII delivery loop, its comet rendered frame by frame (CSS, stepped opacity)
 
 import { mkdir, writeFile } from 'node:fs/promises';
-import { PALETTES, MONO, WEIGHT, esc, style, defs, backdrop, outline, panel } from './lib/glass.mjs';
+import { PALETTES, esc, style, defs, backdrop, outline, panel } from './lib/glass.mjs';
 
 const OUT_DIR = new URL('../assets/', import.meta.url);
 
@@ -113,7 +113,7 @@ function deliveryLoop(p, { cx, cy, rx, ry, perStage = 14, frameMs = 100 }) {
   }).join('');
   const acts = LOOP.map(([, what, why], i) => `<g class="a${i}">
       <text x="${cx}" y="${cy - 12}" class="mono" font-size="8.5" letter-spacing="1.5" fill="${p.accent}" text-anchor="middle">${String(i + 1).padStart(2, '0')} / ${String(n).padStart(2, '0')}</text>
-      <text x="${cx}" y="${cy + 5}" class="sans" font-size="13" font-weight="${WEIGHT.strong}" fill="${p.text}" text-anchor="middle">${esc(what)}</text>
+      <text x="${cx}" y="${cy + 5}" class="sans" font-size="12.5" font-weight="600" fill="${p.text}" text-anchor="middle">${esc(what)}</text>
       <text x="${cx}" y="${cy + 19}" class="mono" font-size="8.5" fill="${p.muted}" text-anchor="middle">${esc(why)}</text>
     </g>`).join('\n    ');
 
@@ -135,7 +135,7 @@ function deliveryLoop(p, { cx, cy, rx, ry, perStage = 14, frameMs = 100 }) {
 // ---------- typing ----------
 
 function typing(p, { x, y, fontSize, typeMs = 55, holdMs = 1900, deleteMs = 24, gapMs = 380 }) {
-  const charW = fontSize * MONO;
+  const charW = fontSize * 0.6;
   // Timeline of [ms, activePhrase, visibleChars].
   const events = [];
   let now = 0;
@@ -184,11 +184,11 @@ function header(p) {
     const y = 250 + ri * 38;
     let cx = 44;
     return row.map(([label, kind]) => {
-      const w = Math.round(label.length * 11 * MONO + 34);
+      const w = Math.round(label.length * 6.6 + 34);
       const [fill, op] = dot[kind] ?? [p.muted, 0.6];
       const g = `${panel(p, cx, y, w, 28, 14)}
     <circle cx="${cx + 14}" cy="${y + 14}" r="3" fill="${fill}" fill-opacity="${op}"/>
-    <text x="${cx + 24}" y="${y + 18}" class="mono" font-size="11" fill="${kind === 'arch' ? p.text : p.muted}" fill-opacity="${kind === 'arch' ? 0.82 : 1}" textLength="${(label.length * 11 * MONO).toFixed(1)}" lengthAdjust="spacing">${esc(label)}</text>`;
+    <text x="${cx + 24}" y="${y + 18}" class="mono" font-size="11" fill="${kind === 'arch' ? p.text : p.muted}" fill-opacity="${kind === 'arch' ? 0.82 : 1}" textLength="${(label.length * 6.6).toFixed(1)}" lengthAdjust="spacing">${esc(label)}</text>`;
       cx += w + 10;
       return g;
     }).join('\n    ');
@@ -208,7 +208,7 @@ function header(p) {
 
   ${backdrop(p, W, H, [{ cx: 160, cy: 40, r: 150 }, { cx: 780, cy: 300, r: 170 }, { cx: 560, cy: 20, r: 110 }])}
 
-  ${panel(p, 16, 16, W - 32, H - 32, 16)}
+  ${panel(p, 16, 16, W - 32, H - 32, 14)}
 
   <!-- window chrome -->
   <circle cx="40" cy="42" r="5" fill="#ff5f57"/>
@@ -218,14 +218,14 @@ function header(p) {
   <rect x="17" y="66" width="${W - 34}" height="1" fill="${p.line}" fill-opacity="${p.lineOpacity}"/>
 
   <!-- identity -->
-  <text x="44" y="108" class="mono" font-size="11" letter-spacing="1.2" fill="${p.accent}">SENIOR SOFTWARE ENGINEER  /  CLOUD ENGINEER</text>
-  <text x="42" y="166" class="sans" font-size="56" font-weight="${WEIGHT.display}" letter-spacing="-1.96" fill="${p.text}">Ubaid Iftikhar</text>
+  <text x="44" y="108" class="mono" font-size="11" letter-spacing="2" fill="${p.accent}">SENIOR SOFTWARE ENGINEER  /  CLOUD ENGINEER</text>
+  <text x="42" y="166" class="sans" font-size="54" font-weight="650" letter-spacing="-1.5" fill="${p.text}">Ubaid Iftikhar</text>
   <text x="44" y="214" class="mono" font-size="16" fill="${p.accent}">$</text>
     ${typed.svg}
     ${chipSvg}
 
   <!-- delivery loop -->
-  ${panel(p, 608, 86, 256, 230, 16)}
+  ${panel(p, 608, 86, 256, 230, 12)}
   <text x="622" y="304" class="mono" font-size="9" letter-spacing="1" fill="${p.muted}" fill-opacity="0.8">~/ship.loop</text>
   <text x="850" y="304" class="mono" font-size="9" letter-spacing="1" fill="${p.accent}" fill-opacity="0.8" text-anchor="end">↻ repeat</text>
   ${loop.svg}
@@ -245,10 +245,10 @@ function pillars(p) {
   const cards = PILLARS.map(([label, title, l1, l2], i) => {
     const x = 16 + i * (cardW + gap);
     return `<g class="rise" style="animation-delay:${(0.12 * i).toFixed(2)}s">
-    ${panel(p, x, 16, cardW, H - 32, 16)}
-    <text x="${x + 20}" y="52" class="mono" font-size="11" letter-spacing="1.2" fill="${p.accent}">${esc(label)}</text>
+    ${panel(p, x, 16, cardW, H - 32, 14)}
+    <text x="${x + 20}" y="52" class="mono" font-size="11" letter-spacing="1.5" fill="${p.accent}">${esc(label)}</text>
     <rect x="${x + 20}" y="64" width="22" height="2" rx="1" fill="${p.accent2}" fill-opacity="0.8"/>
-    <text x="${x + 20}" y="98" class="sans" font-size="18" font-weight="${WEIGHT.subhead}" fill="${p.text}">${esc(title)}</text>
+    <text x="${x + 20}" y="98" class="sans" font-size="17" font-weight="600" fill="${p.text}">${esc(title)}</text>
     <text x="${x + 20}" y="128" class="sans" font-size="12.5" fill="${p.muted}">${esc(l1)}</text>
     <text x="${x + 20}" y="148" class="sans" font-size="12.5" fill="${p.muted}">${esc(l2)}</text>
   </g>`;
@@ -319,8 +319,8 @@ function adoption(p) {
     @keyframes n${i} { 0%, ${(at[i] - 0.1).toFixed(1)}% { opacity: 0; } ${at[i].toFixed(1)}%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }`).join('');
   const stages = ADOPTION_STAGES.map(([name, hint], i) => `<circle cx="${px[i]}" cy="${py}" r="7" fill="none" stroke="${p.muted}" stroke-opacity="0.5"/>
     <circle class="n${i}" cx="${px[i]}" cy="${py}" r="7" fill="${p.accent}"/>
-    <text x="${px[i]}" y="${py + 24}" class="sans" font-size="11" font-weight="${WEIGHT.strong}" fill="${p.text}" text-anchor="middle">${esc(name)}</text>
-    <text x="${px[i]}" y="${py + 38}" class="mono" font-size="8" fill="${p.muted}" text-anchor="middle">${esc(hint)}</text>`).join('\n    ');
+    <text x="${px[i]}" y="${py + 24}" class="sans" font-size="10.5" font-weight="600" fill="${p.text}" text-anchor="middle">${esc(name)}</text>
+    <text x="${px[i]}" y="${py + 38}" class="mono" font-size="8.5" fill="${p.muted}" text-anchor="middle">${esc(hint)}</text>`).join('\n    ');
   const span = px[px.length - 1] - px[0];
   const pipeline = `<rect x="${px[0]}" y="${py - 1}" width="${span}" height="2" rx="1" fill="${p.muted}" fill-opacity="0.3"/>
     <rect class="trail" x="${px[0]}" y="${py - 1}" width="${span}" height="2" rx="1" fill="url(#aiInk)"/>
@@ -351,16 +351,16 @@ function adoption(p) {
     [272, 'AI across the delivery lifecycle', 'structured, reviewed, secure'],
     [676, 'Outcomes', 'team and end users'],
   ];
-  const panels = [[32, 180], [272, 392], [676, 190]].map(([x, w]) => panel(p, x, top, w, cardH, 16)).join('\n  ');
-  const captionSvg = captions.map(([x, title, sub]) => `<text x="${x + 20}" y="${top + cardH - 26}" class="sans" font-size="14" font-weight="${WEIGHT.subhead}" fill="${p.text}">${esc(title)}</text>
+  const panels = [[32, 180], [272, 392], [676, 190]].map(([x, w]) => panel(p, x, top, w, cardH, 14)).join('\n  ');
+  const captionSvg = captions.map(([x, title, sub]) => `<text x="${x + 20}" y="${top + cardH - 26}" class="sans" font-size="13" font-weight="600" fill="${p.text}">${esc(title)}</text>
   <text x="${x + 20}" y="${top + cardH - 11}" class="mono" font-size="9.5" fill="${p.muted}">${esc(sub)}</text>`).join('\n  ');
 
   let chipX = 32;
   const chips = ADOPTION_CHIPS.map((label, i) => {
-    const w = Math.round(label.length * 11 * MONO + 34);
+    const w = Math.round(label.length * 6.6 + 34);
     const g = `${panel(p, chipX, 254, w, 28, 14)}
     <circle class="glow" style="animation-delay:${(0.5 * i).toFixed(1)}s" cx="${chipX + 14}" cy="268" r="3" fill="${i % 2 ? p.accent2 : p.accent}"/>
-    <text x="${chipX + 24}" y="272" class="mono" font-size="11" fill="${p.text}" fill-opacity="0.82" textLength="${(label.length * 11 * MONO).toFixed(1)}" lengthAdjust="spacing">${esc(label)}</text>`;
+    <text x="${chipX + 24}" y="272" class="mono" font-size="11" fill="${p.text}" fill-opacity="0.82" textLength="${(label.length * 6.6).toFixed(1)}" lengthAdjust="spacing">${esc(label)}</text>`;
     chipX += w + 10;
     return g;
   }).join('\n  ');
@@ -390,8 +390,8 @@ function adoption(p) {
 
   ${backdrop(p, W, H, [{ cx: 140, cy: 260, r: 140 }, { cx: 560, cy: 40, r: 150 }, { cx: 820, cy: 240, r: 130 }])}
 
-  <text x="34" y="44" class="mono" font-size="11" letter-spacing="1.2" fill="${p.accent}">AI ADOPTION</text>
-  <text x="32" y="76" class="sans" font-size="24" font-weight="${WEIGHT.heading}" letter-spacing="-0.6" fill="${p.text}">Bringing AI into a large codebase, securely and by design</text>
+  <text x="34" y="44" class="mono" font-size="11" letter-spacing="2" fill="${p.accent}">AI ADOPTION</text>
+  <text x="32" y="76" class="sans" font-size="22" font-weight="650" letter-spacing="-0.4" fill="${p.text}">Bringing AI into a large codebase, securely and by design</text>
 
   ${panels}
   ${cells.join('\n  ')}
@@ -478,12 +478,12 @@ function linkButton(p, { key, label, handle }, i, n) {
 
   <g transform="translate(${ox} ${LINK_MY})">
   ${backdrop(p, W, H, [{ cx: 20 + i * 40, cy: 0, r: 60 }, { cx: W - 30, cy: H, r: 70 }])}
-  ${panel(p, 0, 0, W, H, 24)}
+  ${panel(p, 0, 0, W, H, 18)}
 
   <g clip-path="url(#card)"><rect class="sweep" x="-100" y="-10" width="44" height="${H + 20}" fill="url(#shine)" transform="skewX(-20)"/></g>
 
   ${linkIcon(p, key, 10, 10, 28 / 36)}
-  <text x="48" y="22" class="sans" font-size="13" font-weight="${WEIGHT.subhead}" fill="${p.text}">${esc(label)}</text>
+  <text x="48" y="22" class="sans" font-size="12.5" font-weight="600" fill="${p.text}">${esc(label)}</text>
   <text x="48" y="36" class="mono" font-size="10" fill="${p.muted}">${esc(handle)}</text>
   <path d="M${W - 20} 20 L${W - 14} 14 M${W - 19} 14 H${W - 14} V${19}" fill="none" stroke="${p.accent}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 
