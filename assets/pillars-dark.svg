@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="196" viewBox="0 0 900 196" role="img" aria-label="01 BUILD: Full-stack systems. Clean architecture, built to scale and stay simple. 02 CLOUD: Cloud platforms. Azure infrastructure, IaC and secure deployments. 03 AUTOMATION: Ship faster. CI/CD pipelines that cut friction and reduce risk. 04 AI: Agentic AI. Agent workflows and local LLMs that reason securely.">
+  <style>
+    .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+    .blob { animation: drift 19s ease-in-out infinite alternate; }
+    .blob1 { animation-duration: 23s; animation-direction: alternate-reverse; }
+    .blob2 { animation-duration: 29s; }
+    @keyframes drift { from { transform: translate(0, 0); } to { transform: translate(70px, 26px); } }
+    .rise { animation: rise 0.9s cubic-bezier(.2,.7,.2,1) backwards; }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; }  }
+  </style>
+  <defs>
+    <filter id="soften" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="56"/></filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <clipPath id="card"><rect width="900" height="196" rx="18"/></clipPath>
+    <linearGradient id="edge" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <rect width="900" height="196" fill="#05070d"/>
+    <g filter="url(#soften)" opacity="0.45">
+      <circle class="blob blob0" cx="120" cy="180" r="130" fill="#2f81f7"/>
+      <circle class="blob blob1" cx="520" cy="10" r="140" fill="#8b5cf6"/>
+      <circle class="blob blob2" cx="840" cy="160" r="120" fill="#0ea5b7"/>
+    </g>
+    <rect width="900" height="196" filter="url(#grain)" opacity="0.07"/>
+  </g>
+
+  <g class="rise" style="animation-delay:0.00s">
+    <g>
+    <rect x="16" y="16" width="208" height="164" rx="14" fill="#ffffff" fill-opacity="0.045"/>
+    <rect x="16" y="16" width="208" height="164" rx="14" fill="url(#sheen)"/>
+    <rect x="16.5" y="16.5" width="207" height="163" rx="13.5" fill="none" stroke="url(#edge)"/>
+  </g>
+    <text x="36" y="52" class="mono" font-size="11" letter-spacing="1.5" fill="#58b4ff">01 · BUILD</text>
+    <rect x="36" y="64" width="22" height="2" rx="1" fill="#b39dfa" fill-opacity="0.8"/>
+    <text x="36" y="98" class="sans" font-size="17" font-weight="600" fill="#f0f6fc">Full-stack systems</text>
+    <text x="36" y="128" class="sans" font-size="12.5" fill="#8b949e">Clean architecture, built</text>
+    <text x="36" y="148" class="sans" font-size="12.5" fill="#8b949e">to scale and stay simple.</text>
+  </g>
+  <g class="rise" style="animation-delay:0.12s">
+    <g>
+    <rect x="236" y="16" width="208" height="164" rx="14" fill="#ffffff" fill-opacity="0.045"/>
+    <rect x="236" y="16" width="208" height="164" rx="14" fill="url(#sheen)"/>
+    <rect x="236.5" y="16.5" width="207" height="163" rx="13.5" fill="none" stroke="url(#edge)"/>
+  </g>
+    <text x="256" y="52" class="mono" font-size="11" letter-spacing="1.5" fill="#58b4ff">02 · CLOUD</text>
+    <rect x="256" y="64" width="22" height="2" rx="1" fill="#b39dfa" fill-opacity="0.8"/>
+    <text x="256" y="98" class="sans" font-size="17" font-weight="600" fill="#f0f6fc">Cloud platforms</text>
+    <text x="256" y="128" class="sans" font-size="12.5" fill="#8b949e">Azure infrastructure, IaC</text>
+    <text x="256" y="148" class="sans" font-size="12.5" fill="#8b949e">and secure deployments.</text>
+  </g>
+  <g class="rise" style="animation-delay:0.24s">
+    <g>
+    <rect x="456" y="16" width="208" height="164" rx="14" fill="#ffffff" fill-opacity="0.045"/>
+    <rect x="456" y="16" width="208" height="164" rx="14" fill="url(#sheen)"/>
+    <rect x="456.5" y="16.5" width="207" height="163" rx="13.5" fill="none" stroke="url(#edge)"/>
+  </g>
+    <text x="476" y="52" class="mono" font-size="11" letter-spacing="1.5" fill="#58b4ff">03 · AUTOMATION</text>
+    <rect x="476" y="64" width="22" height="2" rx="1" fill="#b39dfa" fill-opacity="0.8"/>
+    <text x="476" y="98" class="sans" font-size="17" font-weight="600" fill="#f0f6fc">Ship faster</text>
+    <text x="476" y="128" class="sans" font-size="12.5" fill="#8b949e">CI/CD pipelines that cut</text>
+    <text x="476" y="148" class="sans" font-size="12.5" fill="#8b949e">friction and reduce risk.</text>
+  </g>
+  <g class="rise" style="animation-delay:0.36s">
+    <g>
+    <rect x="676" y="16" width="208" height="164" rx="14" fill="#ffffff" fill-opacity="0.045"/>
+    <rect x="676" y="16" width="208" height="164" rx="14" fill="url(#sheen)"/>
+    <rect x="676.5" y="16.5" width="207" height="163" rx="13.5" fill="none" stroke="url(#edge)"/>
+  </g>
+    <text x="696" y="52" class="mono" font-size="11" letter-spacing="1.5" fill="#58b4ff">04 · AI</text>
+    <rect x="696" y="64" width="22" height="2" rx="1" fill="#b39dfa" fill-opacity="0.8"/>
+    <text x="696" y="98" class="sans" font-size="17" font-weight="600" fill="#f0f6fc">Agentic AI</text>
+    <text x="696" y="128" class="sans" font-size="12.5" fill="#8b949e">Agent workflows and local</text>
+    <text x="696" y="148" class="sans" font-size="12.5" fill="#8b949e">LLMs that reason securely.</text>
+  </g>
+
+  <rect x="0.5" y="0.5" width="899" height="195" rx="18" fill="none" stroke="#ffffff" stroke-opacity="0.07"/>
+</svg>
